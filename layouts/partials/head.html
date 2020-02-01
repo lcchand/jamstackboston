@@ -14,7 +14,7 @@
     {{ $ style = slice $component $style | resources.Concat .Name }}
   {{ end }}
   <!-- fingerprint = randomly renames tailend of main.css, so browser will always reloads style -->
-  {{ $style = $style | minify | fingerprint }}
+  {{ $style = slice $style | resources.Concat "all.css"| minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.Permalink }}">
   <title>{{ .Site.Title }}</title>
 </head>
