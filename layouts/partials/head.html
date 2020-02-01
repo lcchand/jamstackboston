@@ -5,8 +5,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
   <!-- resources.Get always looks in the "assets" folder -->
   {{ $style := resources.Get "css/main.css" }}
+  <!-- read the "css" folder and loop thru the individual css files -->
+  {{ $components := readDir "assets/css/components" }}
+  {{ range $components }}
+    <!-- path + filename -->
+    {{ $component := resources.Get (printf "css/components/%s" .Name) }}
+    <!-- slice = creates an array and concatenates "css" files together  -->
+    {{ $ style = slice $component $style | resources.Concat .Name }}
+  {{ end }}
   <!-- fingerprint = randomly renames tailend of main.css, so browser will always reloads style -->
-  {{ $style = $style | fingerprint }}
+  {{ $style = $style | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.Permalink }}">
   <title>{{ .Site.Title }}</title>
 </head>
