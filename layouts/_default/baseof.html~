@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width" />
+    <!-- Style sheet used in Youtube video by Jamstack Boston -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <title>{{ .Site.Title }}</title>
+  </head>
+  <body class="has-navbar-fixed-top">
+    <nav class="navbar is-fixed-top has-shadow">
+      <div class="container">
+	<a href="/" class="navbar-item">JAMbos</a>
+	<!-- range = Loop over all the Markdown files in the "Content" folder -->
+	<div class="navbar-menu navbar-end">
+	  {{ range .Pages }}
+	  <!-- .Permalink: url to the page, .Page.Title as defined in Foront Matter of markdown files  -->
+	  <a href="{{ .Permalink }}" class="navbar-item">{{ .Page.Title }}</a>
+	  {{ end }}
+	</div>
+      </div>
+    </nav>
+    <!-- Title of _index.md file in the "Content" folder -->
+    <h1>{{ .Page.Title }}</h1>
+    
+    body text
+  </body>
+</html>

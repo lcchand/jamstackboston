@@ -1,0 +1,12 @@
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width" />
+  <!-- Style sheet used in Youtube video by Jamstack Boston -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <!-- resources.Get always looks in the "assets" folder -->
+  {{ $style := resources.Get "css/main.css" }}
+  <!-- fingerprint = randomly renames tailend of main.css, so browser will always reloads style -->
+  {{ $style = $style | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}">
+  <title>{{ .Site.Title }}</title>
+</head>

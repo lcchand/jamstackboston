@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+{{ partial "head" . }}
+  <body class="has-navbar-fixed-top">
+    <nav class="navbar is-fixed-top has-shadow">
+      <div class="container">
+	<a href="/" class="navbar-item">JAMbos</a>
+	<div class="navbar-menu navbar-end">
+	  <!-- range = Loop over all the Markdown files in the "Content" folder -->
+	  <!-- .RegularPages filters "out" aggregate "list" pages -->
+	  {{ range .Site.RegularPages }}
+	  <!-- .Permalink: url to the page, .Page.Title as defined in Front Matter of markdown files  -->
+	  <a href="{{ .Permalink }}" class="navbar-item">{{ .Title }}</a>
+	  {{ end }}
+	</div>
+      </div>
+    </nav>
+    <!-- Title of _index.md file in the "Content" folder -->
+    {{ block "content" . }}{{ end }}
+
+  </body>
+</html>
