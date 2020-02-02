@@ -4,17 +4,17 @@
   <!-- Style sheet used in Youtube video by Jamstack Boston -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
   <!-- resources.Get always looks in the "assets" folder -->
-  {{ $style := resources.Get "css/main.css" }}
+  {{ $style := resources.Get "scss/main.scss" }}
   <!-- read the "css" folder and loop thru the individual css files -->
-  {{ $components := readDir "assets/css/components" }}
+  {{ $components := readDir "assets/scss/components" }}
   {{ range $components }}
     <!-- path + filename -->
-    {{ $component := resources.Get (printf "css/components/%s" .Name) }}
+    {{ $component := resources.Get (printf "scss/components/%s" .Name) }}
     <!-- slice = creates an array and concatenates "css" files together  -->
-    {{ $ style = slice $component $style | resources.Concat .Name }}
+    {{ $style = slice  $style $component | resources.Concat .Name }}
   {{ end }}
   <!-- fingerprint = randomly renames tailend of main.css, so browser will always reloads style -->
-  {{ $style = slice $style | resources.Concat "all.css"| minify | fingerprint }}
+  {{ $style = slice $style | resources.Concat "all.css"|  toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.Permalink }}">
   <title>{{ .Site.Title }}</title>
 </head>

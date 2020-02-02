@@ -1,4 +1,9 @@
 {{ define "content" }}
 <h1>{{ .Page.Title }}</h1>
+<!-- .Params.Keyname retrieves the values that are defined the 'Content page' front matter -->
+<!-- {{ . }} lists each element value as 'range' loops thru the array -->
+{{ range .Params.Components }}
+{{ . }}
+{{ end }}
 body text
 {{ end }}
