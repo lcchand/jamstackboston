@@ -1,9 +1,12 @@
 {{ define "content" }}
 <h1>{{ .Page.Title }}</h1>
-<!-- .Params.Keyname retrieves the values that are defined the 'Content page' front matter -->
+<!-- .Params.Keyname retrieves the custom values that are defined the 'Content page' front matter -->
 <!-- {{ . }} lists each element value as 'range' loops thru the array -->
+<!-- dict is named key:value pair for an array -->
 {{ range .Params.Components }}
-{{ . }}
+<!-- Loop over the Index: "keys" to see assoc. values -->
+  {{ range $component, $data := . }}
+    {{ partial ( printf "%s.html" $component ) (dict $component $data) }}
+  {{ end }}
 {{ end }}
-body text
 {{ end }}
