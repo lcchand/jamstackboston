@@ -1,1 +1,11 @@
-<h3>{{ .grid }}</h3>
+<h3>{{ .grid.title }}</h3>
+<div class="columns">
+  <!-- loop over .grid.items (title, desc) in the front matter of _index.md -->
+  {{ range .grid.items }}
+  <div class="column">
+    <div>{{ .title }}</div>
+    <div>{{ .desc }}</div>
+  </div>
+  {{ end }}
+</div>
+

@@ -1,3 +1,3 @@
 ---
-title: post1
+title: post1 from file "post1.md"
 ---

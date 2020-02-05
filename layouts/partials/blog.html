@@ -1,0 +1,6 @@
+Check out our blog:
+<!-- loop through folder: content/blog_posts and extract title:value from each filename.md within folder -->
+<!-- site.RegularPages only "lists" single content pages (post1.md, post2.md) not _index.md -->
+{{ range where site.RegularPages "Type" "blog_posts" }}
+<a href="{{ .Permalink }}" class="navbar-item">{{ .Title }}</a>
+{{ end }}
